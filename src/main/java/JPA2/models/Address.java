@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 
 /**
  * Embeddable Address Type
+ * Запись, встроенная в другую. Вставляются дополнительные колонки.
  */
 @Embeddable
 @Access(AccessType.FIELD)
