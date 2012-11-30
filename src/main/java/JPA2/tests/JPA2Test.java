@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.HashMap;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -34,12 +35,14 @@ public class JPA2Test {
 
 
     @Transactional
-    public Employee createEmployee(int id, String name, long salary) {
+    public Employee createEmployee(String name, long salary) {
         Employee emp = new Employee();
         emp.type = EmployeeType.ENUM1;
         emp.setName(name);
         emp.setSalary(salary);
-        em.persist(emp);
+        emp.phoneNumbers = new HashMap<String, String>();
+        emp.phoneNumbers.put("Домашний", "5113195");
+        em.persist(emp); // Сохраняем в persist-контексте, чтобы где-то кроме прямого указателя можно было получить
         return emp;
     }
 
@@ -66,7 +69,7 @@ public class JPA2Test {
         assertEquals(2024, empl2a.getSalary());
         assertEquals(2024, denis.getSalary());
 
-        Employee e2 = createEmployee(240, "Denis2", 1024);
+        Employee e2 = createEmployee("Denis2", 1024);
 
         // Removing an Entity
         Employee emp = em.find(Employee.class, denis.getId());
@@ -77,7 +80,7 @@ public class JPA2Test {
         assertNull(empl2);
 
         // Beginning and Committing an EntityTransaction
-        createEmployee(158, "John Doe", 45000);
+        createEmployee("John Doe", 45000);
     }
 
     private void removeIfExists(int id) {
@@ -89,7 +92,7 @@ public class JPA2Test {
     @Transactional(propagation = Propagation.NESTED)
     private Employee getEmployee() {
         // Создаём экземпляр
-        Employee e = createEmployee(239, "Denis", 1024);
+        Employee e = createEmployee("Denis", 1024);
         em.flush();
         return e;
     }

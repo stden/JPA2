@@ -2,7 +2,9 @@ package JPA2.models;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 @Entity
 public class Employee {
@@ -64,4 +66,17 @@ public class Employee {
     public void setSalary(long salary) {
         this.salary = salary;
     }
+
+    @ManyToMany
+    private Collection<Project> projects;
+
+    // Using an Embedded Object
+    @Embedded
+    private Address address;
+
+    @ElementCollection
+    @CollectionTable(name = "EMP_PHONE")
+    @MapKeyColumn(name = "PHONE_TYPE")
+    @Column(name = "PHONE_NUM")
+    public Map<String, String> phoneNumbers;
 }
