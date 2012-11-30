@@ -6,9 +6,12 @@ import java.util.Date;
 
 @Entity
 public class Employee {
+    /**
+     * Автоматическая генерация id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
     private String name;
     private long salary;
@@ -21,6 +24,15 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     public EmployeeType type;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    // One-to-One Relationship from Employee to ParkingSpace
+    @OneToOne
+    @JoinColumn(name = "parking_space_id")
+    private ParkingSpace parkingSpace;
 
     public Employee() {
     }
