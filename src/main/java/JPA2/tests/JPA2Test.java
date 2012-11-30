@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 /**
  * Примеры из книги
  */
@@ -30,8 +27,8 @@ public class JPA2Test {
 
 
         // Obtaining an Entity Manager
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("EmployeeService");
+        //EntityManagerFactory emf =
+        //        Persistence.createEntityManagerFactory("EmployeeService");
 
 
     }
