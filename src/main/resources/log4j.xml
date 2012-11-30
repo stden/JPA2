@@ -10,6 +10,10 @@
         </layout>
     </appender>
 
+    <logger name="org.springframework.transaction">
+        <level value="debug"/>
+    </logger>
+
     <root>
         <priority value="warn"/>
         <appender-ref ref="console"/>

@@ -30,7 +30,7 @@
           p:dataSource-ref="dataSource"
           p:jpaVendorAdapter-ref="jpaAdapter"
           p:jpaPropertyMap-ref="jpaPropertyMap"
-          p:packagesToScan="JPA2">
+          p:packagesToScan="JPA2.models">
 
     </bean>
     <util:map id="jpaPropertyMap">

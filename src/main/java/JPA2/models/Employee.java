@@ -1,14 +1,26 @@
 package JPA2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 public class Employee {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     private String name;
     private long salary;
+
+    @Temporal(TemporalType.DATE)
+    private Calendar dob;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "S_DATE")
+    private Date startDate;
+
+    @Enumerated(EnumType.STRING)
+    public EmployeeType type;
 
     public Employee() {
     }
