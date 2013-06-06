@@ -8,7 +8,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,14 +24,9 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:test-context.xml")
 @TransactionConfiguration(transactionManager = "transactionManager")
-@Transactional(
-        propagation = Propagation.REQUIRES_NEW,
-        isolation = Isolation.DEFAULT,
-        readOnly = false)
 public class JPA2Test {
     @PersistenceContext
     EntityManager em;
-
 
     @Transactional
     public Employee createEmployee(String name, long salary) {
