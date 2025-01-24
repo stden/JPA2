@@ -27,13 +27,20 @@
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:jpaVendorAdapter-ref="jpaAdapter"
-          p:jpaPropertyMap-ref="jpaPropertyMap"
-          p:packagesToScan="JPA2.models"/>
-
-    <util:map id="jpaPropertyMap">
-        <entry key="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}"/>
-        <entry key="hibernate.dialect" value="${hibernate.dialect}"/>
-    </util:map>
+          p:persistenceUnitName="testPU">
+        <property name="packagesToScan">
+            <list>
+                <value>JPA2.models</value>
+            </list>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            </props>
+        </property>
+    </bean>
 
     <bean id="jpaAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
