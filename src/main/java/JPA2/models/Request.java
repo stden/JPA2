@@ -1,11 +1,9 @@
+
 package JPA2.models;
 
 import javax.persistence.*;
 import java.util.Calendar;
 
-/**
- * Сущность для тестирования вложенных транзакций
- */
 @Entity
 public class Request {
     @Id
