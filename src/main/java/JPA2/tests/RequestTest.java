@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:test-context.xml")
-@TransactionConfiguration(transactionManager = "transactionManager")
+@org.springframework.transaction.annotation.Transactional
 public class RequestTest {
     static Logger LOGGER = Logger.getLogger(RequestTest.class);
     @PersistenceContext
