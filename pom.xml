@@ -127,13 +127,7 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <!-- Драйвер для Oracle -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>11.2.0.3</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- Oracle driver removed due to licensing restrictions -->
         <!-- Драйвер для MySQL -->
         <dependency>
             <groupId>mysql</groupId>
