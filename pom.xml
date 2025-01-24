@@ -4,8 +4,10 @@
   <artifactId>JPA2</artifactId>
   <version>1.0-SNAPSHOT</version>
   <properties>
-    <spring.version>5.3.20</spring.version> <!-- Example version, adjust as needed -->
-    <org.slf4j-version>1.7.36</org.slf4j-version> <!-- Example version, adjust as needed -->
+    <spring.version>5.3.20</spring.version>
+    <org.slf4j-version>1.7.36</org.slf4j-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
   <dependencies>
     <dependency>
