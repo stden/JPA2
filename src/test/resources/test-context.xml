@@ -15,8 +15,9 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="JPA2"/>
-    <jpa:repositories base-package="JPA2"/>
+    <context:component-scan base-package="JPA2.models"/>
+    <context:component-scan base-package="JPA2.tests"/>
+    <jpa:repositories base-package="JPA2.models"/>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
@@ -44,6 +45,7 @@
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
                 <prop key="hibernate.transaction.jta.platform">org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform</prop>
+                <prop key="hibernate.transaction.coordinator_class">jdbc</prop>
                 <prop key="javax.persistence.schema-generation.database.action">create</prop>
             </props>
         </property>
