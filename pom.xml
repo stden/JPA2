@@ -3,7 +3,7 @@
   <groupId>JPA2</groupId>
   <artifactId>JPA2</artifactId>
   <version>1.0-SNAPSHOT</version>
-  
+
   <properties>
     <spring.version>5.3.20</spring.version>
     <org.slf4j-version>1.7.36</org.slf4j-version>
@@ -155,7 +155,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <dynamicDependencies></dynamicDependencies>
+          <source>11</source>
+          <target>11</target>
         </configuration>
       </plugin>
       <plugin>
