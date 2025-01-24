@@ -16,6 +16,8 @@
         <spring.version>5.3.31</spring.version>
         <cglib.version>2.2.2</cglib.version>
         <org.slf4j-version>1.7.36</org.slf4j-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
