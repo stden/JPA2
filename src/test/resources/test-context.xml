@@ -15,9 +15,8 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="JPA2.models"/>
-    <context:component-scan base-package="JPA2.tests"/>
-    <jpa:repositories base-package="JPA2.models"/>
+    <context:component-scan base-package="JPA2"/>
+    <jpa:repositories base-package="JPA2"/>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
@@ -40,13 +39,12 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
-                <prop key="hibernate.transaction.jta.platform">org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform</prop>
-                <prop key="hibernate.transaction.coordinator_class">jdbc</prop>
-                <prop key="javax.persistence.schema-generation.database.action">create</prop>
+                <prop key="hibernate.id.new_generator_mappings">false</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
             </props>
         </property>
     </bean>
