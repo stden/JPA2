@@ -12,7 +12,7 @@
          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-    <context:property-placeholder location="classpath:db.properties"/>
+    <context:property-placeholder location="classpath:/db.properties"/>
     <context:component-scan base-package="JPA2"/>
     
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -20,36 +20,31 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-          p:dataSource-ref="dataSource"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
-          p:jpaVendorAdapter-ref="jpaAdapter"
-          p:persistenceUnitName="testPU">
-        <property name="packagesToScan">
-            <list>
-                <value>JPA2.models</value>
-            </list>
-        </property>
+          p:jpaVendorAdapter-ref="jpaAdapter">
+        <property name="packagesToScan" value="JPA2.models"/>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
     </bean>
 
     <bean id="jpaAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-          p:generateDdl="${jpa.generateDdl}"
-          p:showSql="${jpa.showSql}"/>
+          p:database="H2"
+          p:showSql="true"
+          p:generateDdl="true"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="${jdbc.driverClassName}"
-          p:url="${jdbc.url}"
-          p:username="${jdbc.username}"
-          p:password="${jdbc.password}"/>
+          p:driverClassName="org.h2.Driver"
+          p:url="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"
+          p:username="sa"
+          p:password=""/>
 </beans>
