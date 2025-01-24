@@ -13,6 +13,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="JPA2"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
     <tx:annotation-driven/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -24,7 +25,12 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="JPA2.models"/>
+        <property name="packagesToScan">
+            <list>
+                <value>JPA2.models</value>
+                <value>JPA2.tests</value>
+            </list>
+        </property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>
@@ -38,6 +44,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
             </props>
         </property>
     </bean>
