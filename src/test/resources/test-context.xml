@@ -16,6 +16,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="JPA2"/>
+    <jpa:repositories base-package="JPA2.models"/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -40,6 +41,8 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
     </bean>
