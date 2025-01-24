@@ -26,6 +26,7 @@
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:jpaVendorAdapter-ref="jpaAdapter">
+        <property name="persistenceUnitName" value="testPU"/>
         <property name="packagesToScan" value="JPA2.models"/>
         <property name="jpaProperties">
             <props>
