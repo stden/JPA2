@@ -5,15 +5,22 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
+@Table(name = "requests")
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    public String name;
-    public Calendar convertX;
-    public Calendar execute;
-    public Calendar generateResponse;
+    private String name;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar convertX;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar execute;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar generateResponse;
     
     public int getId() {
         return id;
@@ -21,5 +28,37 @@ public class Request {
     
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public Calendar getConvertX() {
+        return convertX;
+    }
+    
+    public void setConvertX(Calendar convertX) {
+        this.convertX = convertX;
+    }
+    
+    public Calendar getExecute() {
+        return execute;
+    }
+    
+    public void setExecute(Calendar execute) {
+        this.execute = execute;
+    }
+    
+    public Calendar getGenerateResponse() {
+        return generateResponse;
+    }
+    
+    public void setGenerateResponse(Calendar generateResponse) {
+        this.generateResponse = generateResponse;
     }
 }
