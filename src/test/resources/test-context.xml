@@ -23,21 +23,22 @@
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
     <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-          p:dataSource-ref="dataSource"
-          p:jpaVendorAdapter-ref="jpaAdapter">
-        <property name="persistenceUnitName" value="testPU"/>
-        <property name="packagesToScan">
-            <list>
-                <value>JPA2.models</value>
-            </list>
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="JPA2.models"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="generateDdl" value="true"/>
+                <property name="database" value="H2"/>
+            </bean>
         </property>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-                <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
             </props>
         </property>
     </bean>
