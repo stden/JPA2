@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:test-context.xml")
-@org.springframework.test.context.jdbc.Sql
+@Transactional
 public class JPA2Test {
     @PersistenceContext
     EntityManager em;
