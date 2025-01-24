@@ -16,7 +16,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="JPA2"/>
-    <jpa:repositories base-package="JPA2.models"/>
+    <jpa:repositories base-package="JPA2"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
