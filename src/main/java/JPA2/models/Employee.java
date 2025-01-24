@@ -1,16 +1,11 @@
+
 package JPA2.models;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 public class Employee {
-    /**
-     * Автоматическая генерация id
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -20,6 +15,7 @@ public class Employee {
 
     @Temporal(TemporalType.DATE)
     private Calendar dob;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "S_DATE")
     private Date startDate;
@@ -31,10 +27,21 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    // One-to-One Relationship from Employee to ParkingSpace
     @OneToOne
     @JoinColumn(name = "parking_space_id")
     private ParkingSpace parkingSpace;
+
+    @ManyToMany
+    private Collection<Project> projects;
+
+    @Embedded
+    private Address address;
+
+    @ElementCollection
+    @CollectionTable(name = "EMP_PHONE")
+    @MapKeyColumn(name = "PHONE_TYPE")
+    @Column(name = "PHONE_NUM")
+    public Map<String, String> phoneNumbers;
 
     public Employee() {
     }
@@ -66,17 +73,4 @@ public class Employee {
     public void setSalary(long salary) {
         this.salary = salary;
     }
-
-    @ManyToMany
-    private Collection<Project> projects;
-
-    // Using an Embedded Object
-    @Embedded
-    private Address address;
-
-    @ElementCollection
-    @CollectionTable(name = "EMP_PHONE")
-    @MapKeyColumn(name = "PHONE_TYPE")
-    @Column(name = "PHONE_NUM")
-    public Map<String, String> phoneNumbers;
 }
