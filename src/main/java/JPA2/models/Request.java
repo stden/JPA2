@@ -11,16 +11,16 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    private String name;
+    public String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar convertX;
+    public Calendar convertX;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar execute;
+    public Calendar execute;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar generateResponse;
+    public Calendar generateResponse;
     
     public int getId() {
         return id;
