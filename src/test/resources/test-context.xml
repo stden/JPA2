@@ -14,7 +14,7 @@
 
     <context:property-placeholder location="classpath:db.properties"/>
     <context:component-scan base-package="JPA2"/>
-    
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
