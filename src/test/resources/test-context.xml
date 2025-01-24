@@ -21,7 +21,7 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="JPA2.models"/>
-        <property name="persistenceUnitName" value="JPA2PersistenceUnit"/>
+        <property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="true"/>
