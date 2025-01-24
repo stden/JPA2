@@ -49,8 +49,8 @@
           p:generateDdl="true"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="org.h2.Driver"
-          p:url="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"
-          p:username="sa"
-          p:password=""/>
+          p:driverClassName="${jdbc.driverClassName}"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}"/>
 </beans>
