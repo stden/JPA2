@@ -16,23 +16,27 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="JPA2"/>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MySQL"/>
+        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="JPA2.models"/>
+        <property name="packagesToScan">
+            <list>
+                <value>JPA2.models</value>
+                <value>JPA2.tests</value>
+            </list>
+        </property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="true"/>
                 <property name="generateDdl" value="true"/>
-                <property name="database" value="H2"/>
+                <property name="showSql" value="true"/>
             </bean>
         </property>
         <property name="jpaProperties">
@@ -41,6 +45,7 @@
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
             </props>
         </property>
     </bean>
