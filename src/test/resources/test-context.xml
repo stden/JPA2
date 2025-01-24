@@ -15,12 +15,12 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="JPA2.models"/>
-    <jpa:repositories base-package="JPA2.models"/>
+    <context:component-scan base-package="JPA2"/>
+    <jpa:repositories base-package="JPA2"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MySQL"/>
+        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
@@ -30,8 +30,8 @@
         <property name="packagesToScan" value="JPA2.models"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="generateDdl" value="true"/>
                 <property name="showSql" value="true"/>
+                <property name="generateDdl" value="true"/>
                 <property name="database" value="H2"/>
             </bean>
         </property>
@@ -41,7 +41,6 @@
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
     </bean>
@@ -51,5 +50,4 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
 </beans>
