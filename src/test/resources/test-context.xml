@@ -28,12 +28,16 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="JPA2.models"/>
+        <property name="packagesToScan">
+            <list>
+                <value>JPA2.models</value>
+            </list>
+        </property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="true"/>
                 <property name="generateDdl" value="true"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+                <property name="database" value="H2"/>
             </bean>
         </property>
         <property name="persistenceProvider">
