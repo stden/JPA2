@@ -17,11 +17,10 @@
     <context:annotation-config/>
     <context:component-scan base-package="JPA2"/>
     <jpa:repositories base-package="JPA2.models"/>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>
+        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MySQL"/>
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
@@ -33,11 +32,12 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>
                 <property name="showSql" value="true"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+                <property name="database" value="H2"/>
             </bean>
         </property>
         <property name="jpaProperties">
             <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
@@ -48,6 +48,8 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
-        <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 </beans>
