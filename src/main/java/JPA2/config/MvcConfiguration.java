@@ -1,3 +1,4 @@
+
 package JPA2.config;
 
 import org.springframework.context.annotation.Bean;
@@ -6,13 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan(basePackages = "JPA2")
 @EnableWebMvc
-public class MvcConfiguration extends WebMvcConfigurerAdapter {
+public class MvcConfiguration implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver getViewResolver() {
@@ -26,6 +27,4 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-
-
 }
