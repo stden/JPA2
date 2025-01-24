@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNull;
  * Примеры из книги
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:test-context.xml")
+@ContextConfiguration(locations = {"classpath:/test-context.xml"})
 @Transactional
 public class JPA2Test {
     @PersistenceContext

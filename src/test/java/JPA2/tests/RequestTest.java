@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
  * Тестирование
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:test-context.xml")
+@ContextConfiguration(locations = {"classpath:/test-context.xml"})
 @org.springframework.transaction.annotation.Transactional
 public class RequestTest {
     static Logger LOGGER = Logger.getLogger(RequestTest.class);
