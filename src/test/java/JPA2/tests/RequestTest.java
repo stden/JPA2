@@ -92,7 +92,7 @@ public class RequestTest {
     @Transactional
     private Request convert(String incomeRequest) {
         Request request = new Request();
-        request.name = incomeRequest;
+        request.setName(incomeRequest);
         request.convertX = Calendar.getInstance();
         em.persist(request);
         if (convertException)
