@@ -61,3 +61,29 @@ public class Request {
         this.generateResponse = generateResponse;
     }
 }
+package JPA2.models;
+
+import javax.persistence.*;
+import java.util.Calendar;
+
+@Entity
+public class Request {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    private String name;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    public Calendar convertX;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    public Calendar execute;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    public Calendar generateResponse;
+
+    public int getId() {
+        return id;
+    }
+}
