@@ -112,7 +112,13 @@
       <artifactId>slf4j-reload4j</artifactId>
       <version>${org.slf4j-version}</version>
     </dependency>
-  </dependencies>
+  <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
   <build>
     <plugins>
       <plugin>
