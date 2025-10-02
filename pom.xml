@@ -7,7 +7,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>6.2.11</spring.version>
-    <hibernate.version>6.4.10.Final</hibernate.version>
+    <hibernate.version>6.6.28.Final</hibernate.version>
     <org.slf4j-version>2.0.16</org.slf4j-version>
   </properties>
   <dependencies>
