@@ -73,4 +73,68 @@ public class Employee {
     public void setSalary(long salary) {
         this.salary = salary;
     }
+
+    public Calendar getDob() {
+        return dob;
+    }
+
+    public void setDob(Calendar dob) {
+        this.dob = dob;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public ParkingSpace getParkingSpace() {
+        return parkingSpace;
+    }
+
+    public void setParkingSpace(ParkingSpace parkingSpace) {
+        this.parkingSpace = parkingSpace;
+    }
+
+    public Collection<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Map<String, String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(Map<String, String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public EmployeeType getType() {
+        return type;
+    }
+
+    public void setType(EmployeeType type) {
+        this.type = type;
+    }
 }
