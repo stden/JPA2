@@ -113,4 +113,85 @@ public class RequestTest {
         request.generateResponse = Calendar.getInstance();
         return request.getId();
     }
+
+    @Test
+    @Transactional
+    public void testRequestGettersSetters() {
+        Request request = new Request();
+
+        request.setName("Test Request");
+        assertEquals("Test Request", request.getName());
+
+        Calendar convertTime = Calendar.getInstance();
+        request.setConvertX(convertTime);
+        assertEquals(convertTime, request.getConvertX());
+
+        Calendar executeTime = Calendar.getInstance();
+        request.setExecute(executeTime);
+        assertEquals(executeTime, request.getExecute());
+
+        Calendar responseTime = Calendar.getInstance();
+        request.setGenerateResponse(responseTime);
+        assertEquals(responseTime, request.getGenerateResponse());
+    }
+
+    @Test
+    @Transactional
+    public void testRequestIdSetterGetter() {
+        Request request = new Request();
+        request.setId(999);
+        assertEquals(999, request.getId());
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void testRequestPersistence() {
+        Request request = new Request();
+        request.setName("Persistence Test");
+        request.convertX = Calendar.getInstance();
+        request.execute = Calendar.getInstance();
+        request.generateResponse = Calendar.getInstance();
+
+        em.persist(request);
+        em.flush();
+
+        Request found = em.find(Request.class, request.getId());
+        assertNotNull(found);
+        assertEquals("Persistence Test", found.getName());
+        assertNotNull(found.convertX);
+        assertNotNull(found.execute);
+        assertNotNull(found.generateResponse);
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void testRequestAllFields() {
+        Request request = new Request();
+
+        request.setName("Complete Request");
+
+        Calendar conv = Calendar.getInstance();
+        conv.set(2024, Calendar.JANUARY, 1, 10, 0, 0);
+        request.setConvertX(conv);
+
+        Calendar exec = Calendar.getInstance();
+        exec.set(2024, Calendar.JANUARY, 1, 10, 5, 0);
+        request.setExecute(exec);
+
+        Calendar resp = Calendar.getInstance();
+        resp.set(2024, Calendar.JANUARY, 1, 10, 10, 0);
+        request.setGenerateResponse(resp);
+
+        em.persist(request);
+        em.flush();
+
+        Request found = em.find(Request.class, request.getId());
+        assertNotNull(found);
+        assertEquals("Complete Request", found.getName());
+        assertNotNull(found.getConvertX());
+        assertNotNull(found.getExecute());
+        assertNotNull(found.getGenerateResponse());
+    }
 }

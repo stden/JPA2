@@ -23,5 +23,24 @@ jobs:
     - name: Build with Maven
       run: mvn clean install -DskipTests
 
-    - name: Run tests
-      run: mvn test
+    - name: Run tests with coverage
+      run: mvn test jacoco:report
+
+    - name: Check coverage
+      run: mvn jacoco:check
+
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: jacoco-report
+        path: target/site/jacoco/
+
+    - name: Generate coverage summary
+      if: always()
+      run: |
+        if [ -f target/site/jacoco/index.html ]; then
+          echo "## Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo "Coverage report generated successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "Download the artifact to view detailed coverage." >> $GITHUB_STEP_SUMMARY
+        fi
