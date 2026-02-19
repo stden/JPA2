@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.lang.reflect.Method;
+
 import static org.junit.Assert.*;
 
 /**
@@ -48,8 +50,8 @@ public class MvcConfigurationTest {
         assertTrue(viewResolver instanceof InternalResourceViewResolver);
         InternalResourceViewResolver resolver = (InternalResourceViewResolver) viewResolver;
 
-        assertEquals("/WEB-INF/views/", resolver.getPrefix());
-        assertEquals(".jsp", resolver.getSuffix());
+        assertEquals("/WEB-INF/views/", getPrefix(resolver));
+        assertEquals(".jsp", getSuffix(resolver));
     }
 
     @Test
@@ -57,8 +59,8 @@ public class MvcConfigurationTest {
         MvcConfiguration config = new MvcConfiguration();
         InternalResourceViewResolver resolver = (InternalResourceViewResolver) config.getViewResolver();
 
-        String prefix = resolver.getPrefix();
-        String suffix = resolver.getSuffix();
+        String prefix = getPrefix(resolver);
+        String suffix = getSuffix(resolver);
 
         assertEquals("/WEB-INF/views/", prefix);
         assertEquals(".jsp", suffix);
@@ -131,5 +133,23 @@ public class MvcConfigurationTest {
         // Verify that ViewResolver can be created
         ViewResolver viewResolver = config.getViewResolver();
         assertNotNull(viewResolver);
+    }
+
+    private String getPrefix(InternalResourceViewResolver resolver) {
+        return (String) invokeProtected(resolver, "getPrefix");
+    }
+
+    private String getSuffix(InternalResourceViewResolver resolver) {
+        return (String) invokeProtected(resolver, "getSuffix");
+    }
+
+    private Object invokeProtected(Object target, String methodName) {
+        try {
+            Method method = target.getClass().getSuperclass().getDeclaredMethod(methodName);
+            method.setAccessible(true);
+            return method.invoke(target);
+        } catch (Exception e) {
+            throw new AssertionError("Failed to invoke " + methodName, e);
+        }
     }
 }

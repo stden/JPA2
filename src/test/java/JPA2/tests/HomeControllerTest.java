@@ -65,7 +65,7 @@ public class HomeControllerTest {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
-                .andExpect(model().attributeCount(0));
+                .andExpect(model().size(0));
     }
 
     @Test
