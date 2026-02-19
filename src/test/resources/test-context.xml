@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="JPA2.models"/>
+    <context:component-scan base-package="JPA2"/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
