@@ -6,10 +6,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <spring.version>6.2.13</spring.version>
-    <spring-data-jpa.version>3.5.5</spring-data-jpa.version>
-    <hibernate.version>6.6.29.Final</hibernate.version>
-    <h2.version>2.4.240</h2.version>
+    <spring.version>6.1.5</spring.version>
+    <spring-data-jpa.version>3.1.9</spring-data-jpa.version>
+    <hibernate.version>6.4.4.Final</hibernate.version>
+    <h2.version>2.2.224</h2.version>
     <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
     <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
     <org.slf4j-version>2.0.17</org.slf4j-version>
